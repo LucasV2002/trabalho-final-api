@@ -7,59 +7,96 @@ import jakarta.validation.constraints.NotBlank;
 
 public class ClienteRequestDTO {
 		@NotBlank
-		private String nome;
-		
+	private String nome;
+
 		@Email
-		private String email;
-		
+	private String email;
+
 		@CPF
-		private String cpf;
-		
+	private String cpf;
+
 		@NotBlank
-		private String telefone;
-		
+	private String telefone;
+
 		@NotBlank
-		private String cep;
+	private String cep;
 
-		public String getNome() {
-			return nome;
-		}
+		@NotBlank
+		String senha;
 
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
+	public ClienteRequestDTO() {
 
-		public String getEmail() {
-			return email;
-		}
+	}
+	
 
-		public void setEmail(String email) {
-			this.email = email;
-		}
+	public ClienteRequestDTO(String nome, String email, String cpf, String telefone, String cep, String senha) {
+		super();
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.telefone = telefone;
+		this.cep = cep;
+		this.senha = senha;
+	}
 
-		public String getCpf() {
-			return cpf;
-		}
 
-		public void setCpf(String cpf) {
-			this.cpf = cpf;
-		}
+	public String getNome() {
+		return nome;
+	}
 
-		public String getTelefone() {
-			return telefone;
-		}
 
-		public void setTelefone(String telefone) {
-			this.telefone = telefone;
-		}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-		public String getCep() {
-			return cep;
-		}
 
-		public void setCep(String cep) {
-			this.cep = cep;
-		}
-		
-		
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getCpf() {
+		return cpf;
+	}
+
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+
+	public String getCep() {
+		return cep;
+	}
+
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}	
+	
 }

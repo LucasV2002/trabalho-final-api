@@ -1,52 +1,74 @@
 package br.com.serratec.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Pedido {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.UUID)
-	private UUID id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-	@NotBlank
-	private String nome;
+	@JsonBackReference("pedidoProdutos")
+	@OneToMany(mappedBy = "id.pedido")
+	private List<PedidoProduto> itens = new ArrayList<>();
+	
+	private Double valorTotal;
 
-	@OneToMany(mappedBy = "id.pedido", fetch = FetchType.EAGER)
-	private Set<PedidoProduto> pedidoProduto = new HashSet<>();
+	private LocalDate dataPedido;
+	
+	@JsonBackReference("pedidoClientes")
+	@ManyToOne
+	private Cliente cliente;
 
-	public UUID getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Long id) {
 		this.id = id;
+	}	
+
+	public List<PedidoProduto> getItens() {
+		return itens;
 	}
 
-	public String getNome() {
-		return nome;
+	public void setItens(List<PedidoProduto> itens) {
+		this.itens = itens;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public Double getValorTotal() {
+		return valorTotal;
 	}
 
-	public Set<PedidoProduto> getPedidoProduto() {
-		return pedidoProduto;
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
-	public void setPedidoProduto(Set<PedidoProduto> pedidoProduto) {
-		this.pedidoProduto = pedidoProduto;
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public LocalDate getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(LocalDate dataPedido) {
+		this.dataPedido = dataPedido;
 	}
 
 }

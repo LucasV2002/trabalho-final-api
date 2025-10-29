@@ -41,7 +41,7 @@ public class PedidoProduto {
 	}
 	
 	public Integer calcularTotal() {
-		this.total = quantidade * id.getProduto().getPreço();
+		this.total = quantidade * id.getProduto().getPreco();
 		return total;
 	}
 	

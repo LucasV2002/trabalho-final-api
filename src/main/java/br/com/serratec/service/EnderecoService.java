@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.serratec.dto.EnderecoResponseDTO;
 import br.com.serratec.entity.Endereco;
 import br.com.serratec.repository.EnderecoRepository;
 
@@ -17,14 +16,15 @@ public class EnderecoService {
 	@Autowired
 	private EnderecoRepository repository;
 
-	public EnderecoResponseDTO buscarCep(String cep) {
+	public Endereco buscarCep(String cep) {
 
 		Optional<Endereco> endereco = repository.findByCep(cep);
 
 		if (endereco.isPresent()) {
-			return new EnderecoResponseDTO(endereco.get().getCep());
+			return endereco.get();
 		} else {
 			RestTemplate rs = new RestTemplate();
+			System.out.println(cep);
 			String url = "https://viacep.com.br/ws/" + cep + "/json/";
 			Optional<Endereco> enderecoViaCep = Optional.ofNullable(rs.getForObject(url, Endereco.class));
 
@@ -39,9 +39,9 @@ public class EnderecoService {
 
 	}
 
-	private EnderecoResponseDTO inserir(Endereco endereco) {
+	private Endereco inserir(Endereco endereco) {
 		endereco = repository.save(endereco);
-		return new EnderecoResponseDTO(endereco.getCep());
+		return endereco;
 
 	}
 }

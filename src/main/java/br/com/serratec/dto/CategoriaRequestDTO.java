@@ -2,7 +2,7 @@ package br.com.serratec.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class categoriaRequestDTO {
+public class CategoriaRequestDTO {
 		@NotBlank
 		private String nome;
 
