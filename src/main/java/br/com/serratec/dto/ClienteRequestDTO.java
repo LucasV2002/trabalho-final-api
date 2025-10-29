@@ -1,53 +1,65 @@
 package br.com.serratec.dto;
 
-import br.com.serratec.entity.Cliente;
+import org.hibernate.validator.constraints.br.CPF;
+
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class ClienteRequestDTO {
+		@NotBlank
+		private String nome;
+		
+		@Email
+		private String email;
+		
+		@CPF
+		private String cpf;
+		
+		@NotBlank
+		private String telefone;
+		
+		@NotBlank
+		private String cep;
 
-	@NotBlank
-	private String nome;
+		public String getNome() {
+			return nome;
+		}
 
-	@Email
-	private String email;
+		public void setNome(String nome) {
+			this.nome = nome;
+		}
 
-	@NotBlank
-	private String senha;
+		public String getEmail() {
+			return email;
+		}
 
+		public void setEmail(String email) {
+			this.email = email;
+		}
 
-	public ClienteRequestDTO() {
-	}
+		public String getCpf() {
+			return cpf;
+		}
 
-	public ClienteRequestDTO(Cliente cliente) {
-		this.nome = cliente.getNome();
-		this.email = cliente.getEmail();
-		this.senha = cliente.getSenha();
-	}
+		public void setCpf(String cpf) {
+			this.cpf = cpf;
+		}
 
+		public String getTelefone() {
+			return telefone;
+		}
 
-	public String getNome() {
-		return nome;
-	}
+		public void setTelefone(String telefone) {
+			this.telefone = telefone;
+		}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+		public String getCep() {
+			return cep;
+		}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
+		public void setCep(String cep) {
+			this.cep = cep;
+		}
+		
+		
 }
