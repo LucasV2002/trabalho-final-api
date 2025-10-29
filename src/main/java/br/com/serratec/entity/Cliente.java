@@ -15,7 +15,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Cliente extends Pessoa implements UserDetails {
@@ -31,9 +34,13 @@ public class Cliente extends Pessoa implements UserDetails {
 	private String senha;
 	private String role = "ROLE_CLIENTE";
 	private LocalDate dataCriacao;
-	
+
 	@OneToMany
 	private Set<Produto> Produtos = new HashSet<>();
+
+	@ManyToOne
+	@JoinColumn(name = "endereco_cep", referencedColumnName = "cep")
+	private Endereco endereco;
 
 	public String getRole() {
 		return role;
@@ -96,7 +103,16 @@ public class Cliente extends Pessoa implements UserDetails {
 	@Override
 	public String getUsername() {
 		return email;
-
 	}
 
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	
+	
 }

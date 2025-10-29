@@ -36,12 +36,29 @@ public class AppConfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.configurationSource(corsConfigurationSource()))
-				.authorizeHttpRequests(requests -> requests
-						.requestMatchers(HttpMethod.POST, "/clientes").permitAll() // cadastro
-						.requestMatchers(HttpMethod.GET, "/clientes").permitAll() // listagem pública opcional
+				.authorizeHttpRequests(requests -> requests.requestMatchers(HttpMethod.POST, "/clientes").permitAll() // cadastro
+						.requestMatchers(HttpMethod.GET, "/clientes").permitAll() // listagem publica opcional
+						.requestMatchers(HttpMethod.DELETE, "/clientes/excluir/**").permitAll() // DELETE
+						.requestMatchers(HttpMethod.PUT, "/clientes/**").permitAll() // atualizar (ja sao 7h da manha T-T)
+						
+						.requestMatchers(HttpMethod.POST, "/pedidos/**").permitAll()
+						
+						// categorias
+						.requestMatchers( "/categorias").permitAll()
+						.requestMatchers(HttpMethod.GET, "/categorias").permitAll()
+						.requestMatchers(HttpMethod.PUT, "/categorias/**").permitAll()
+						.requestMatchers(HttpMethod.DELETE, "/categorias/**").permitAll()
 
-						// Swagger e H2 para testes
-						.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/h2-console/**").permitAll()
+						// produtos (Deus me ajude)
+						.requestMatchers(HttpMethod.POST, "/produtos").permitAll()
+						.requestMatchers(HttpMethod.GET, "/produtos").permitAll()
+						.requestMatchers(HttpMethod.DELETE, "/produtos/excluir/**").permitAll()
+
+						// Swagger
+						.requestMatchers("/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
+
+						// H2
+						.requestMatchers("/h2-console/**").permitAll()
 
 						// Todo o resto precisa de autenticação
 						.anyRequest().authenticated())
@@ -52,6 +69,7 @@ public class AppConfig {
 				new JwtAuthenticationFilter(
 						authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil),
 				UsernamePasswordAuthenticationFilter.class);
+		
 		http.addFilterBefore(new JwtAuthorizationFilter(
 				authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil,
 				userDetailsService), UsernamePasswordAuthenticationFilter.class);

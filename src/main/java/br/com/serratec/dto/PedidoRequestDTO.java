@@ -2,30 +2,46 @@ package br.com.serratec.dto;
 
 import java.util.List;
 
-import jakarta.validation.constraints.NotNull;
-
 public class PedidoRequestDTO {
-		@NotNull
-		private Long clienteId;
-		
-		@NotNull
-		private List<ItemPedidoDTO> itens;
 
-		public Long getClienteId() {
-			return clienteId;
+	private String clienteId;
+
+	private List<ProdutoPedidoDTO> itens;
+
+	public static class ProdutoPedidoDTO {
+		private Long produtoId; 
+		private Integer quantidade;
+
+		public Long getProdutoId() {
+			return produtoId;
 		}
 
-		public void setClienteId(Long clienteId) {
-			this.clienteId = clienteId;
+		public void setProdutoId(Long produtoId) {
+			this.produtoId = produtoId;
 		}
 
-		public List<ItemPedidoDTO> getItens() {
-			return itens;
+		public Integer getQuantidade() {
+			return quantidade;
 		}
 
-		public void setItens(List<ItemPedidoDTO> itens) {
-			this.itens = itens;
+		public void setQuantidade(Integer quantidade) {
+			this.quantidade = quantidade;
 		}
-		
-		
+	}
+
+	public String getClienteId() {
+		return clienteId;
+	}
+
+	public void setClienteId(String clienteId) {
+		this.clienteId = clienteId;
+	}
+
+	public List<ProdutoPedidoDTO> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ProdutoPedidoDTO> itens) {
+		this.itens = itens;
+	}
 }

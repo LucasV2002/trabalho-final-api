@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.serratec.dto.EnderecoResponseDTO;
+import br.com.serratec.entity.Endereco;
 import br.com.serratec.service.EnderecoService;
 
 @RestController
@@ -18,7 +18,7 @@ public class EnderecoController {
 	private EnderecoService service;
 
 	@GetMapping("{cep}")
-	public ResponseEntity<EnderecoResponseDTO> buscarCep(@PathVariable String cep) {
+	public ResponseEntity<Endereco> buscarCep(@PathVariable String cep) {
 		return ResponseEntity.ok(service.buscarCep(cep));
 	}
 
