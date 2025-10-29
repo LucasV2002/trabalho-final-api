@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.7</version>
+		<version>3.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.serratec</groupId>
-	<artifactId>api-curso</artifactId>
+	<artifactId>TrabalhoFinal-API</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-curso</name>
-	<description>Conteúdo diversos</description>
+	<name>TrabalhoFinal-API</name>
+	<description>Projeto de introdução</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -27,10 +27,8 @@
 		<url/>
 	</scm>
 	<properties>
-    <java.version>17</java.version>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-</properties>
+		<java.version>17</java.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -67,46 +65,11 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<groupId>br.com.serratec</groupId>
+			<artifactId>api-curso</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
-	<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
-<dependency>
-    <groupId>org.springdoc</groupId>
-    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-    <version>2.8.13</version>
-</dependency>
-	
-	<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-api</artifactId>
-			<version>0.11.5</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-impl</artifactId>
-			<version>0.11.5</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-gson</artifactId>
-			<version>0.11.5</version>
-		</dependency>
-
-		<dependency>
-		<groupId>org.springdoc</groupId>
-   			 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-   			 <version>2.5.0</version>
-		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>
@@ -116,6 +79,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	</dependencies>
 
 </project>
